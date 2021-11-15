@@ -2,17 +2,16 @@
 Send review invitations to all reviewers. Run this after match.py
 """
 
-import argparse
-import os
+import os, django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "paperbidding.settings")
+django.setup()
 
-import django
+import argparse
+
 from django.db.models import Q
 from bidding.views import get_hash
 from bidding.models import Author, Paper
 from mail import send_mail
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "paperbidding.settings"
-django.setup()
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--email', help='Limit to this email address')
