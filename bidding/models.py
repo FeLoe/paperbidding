@@ -28,8 +28,8 @@ class Paper(models.Model):
         return "<{id}: {title!r}>".format(**self.__dict__)
 
 class Bid(models.Model):
-    author = models.ForeignKey(Author, null=False, on_delete="cascade")
-    paper = models.ForeignKey(Paper, null=False, on_delete="cascade")
+    author = models.ForeignKey(Author, null=False, on_delete=models.CASCADE)
+    paper = models.ForeignKey(Paper, null=False, on_delete=models.CASCADE)
     score = models.IntegerField(null=False)
     weight = models.FloatField(null=True)
 
@@ -37,8 +37,8 @@ class Bid(models.Model):
         unique_together = ('author', 'paper')
 
 class Authorship(models.Model):
-    author = models.ForeignKey(Author, null=False, on_delete="cascade")
-    paper = models.ForeignKey(Paper, null=False, on_delete="cascade")
+    author = models.ForeignKey(Author, null=False, on_delete=models.CASCADE)
+    paper = models.ForeignKey(Paper, null=False, on_delete=models.CASCADE)
     number = models.IntegerField(null=False)
 
 from django.contrib import admin
