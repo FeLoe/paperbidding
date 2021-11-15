@@ -2,14 +2,14 @@
 Send reminder emails to reviewers who haven't put in any bid yet
 """
 
+import os, django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "paperbidding.settings")
+django.setup()
+
 import argparse
-import os
 
 from mail import send_mail
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "paperbidding.settings"
-import django
-django.setup()
 from django.db.models import Q
 from bidding.views import get_hash
 from bidding.models import Author, Paper, Bid
